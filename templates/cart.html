@@ -1,0 +1,33 @@
+
+{% extends 'base.html' %}
+
+{% block body %}
+
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th>Melon Name</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Total</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% if melons != None %}
+                {% for id in melons %}
+                    <tr>
+                        <td>{{ melons[id][0] }}</td>
+                        <td>{{ melons[id][1] }}</td>
+                        <td>${{ "%.2f" | format(melons[id][2]) }}</td>
+                        <td>${{ "%.2f" | format(melons[id][1] * melons[id][2]) }}</td>
+                    </tr>
+                {% endfor %}
+            {% endif %}
+        </tbody>
+    </table>
+
+    <h3>Total: ${{ "%.2f" | format(total) }}</h3>
+
+    <a href="/checkout" class="btn btn-large btn-primary">Check Out</a>
+
+{% endblock %}
